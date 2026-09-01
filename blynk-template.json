@@ -1,0 +1,24 @@
+{
+  "name": "EspFire",
+  "templateId": "TMPL34idoUUUe",
+  "description": "ESP32 QC0050 Fire Alarm — V0 Fire, V1 Analog, V2 Uptime",
+  "datastreams": [
+    {"pin": "V0", "name": "Fire Status", "type": "INTEGER", "min": 0, "max": 1, "isPro": false},
+    {"pin": "V1", "name": "Flame Analog", "type": "INTEGER", "min": 0, "max": 4095, "isPro": false},
+    {"pin": "V2", "name": "Uptime sec", "type": "INTEGER", "min": 0, "max": 999999, "isPro": false}
+  ],
+  "events": [
+    {"code": "fire_alert", "name": "Fire Alert", "type": "CRITICAL", "notify": true, "timeline": true, "description": "Fire detected! Check immediately."},
+    {"code": "fire_cleared", "name": "Fire Cleared", "type": "INFO", "notify": false, "timeline": true, "description": "Fire cleared — system safe."}
+  ],
+  "dashboard": [
+    {"type": "LED", "pin": "V0", "label": "FIRE", "color": "#FF0000", "offLabel": "SAFE"},
+    {"type": "Gauge", "pin": "V1", "label": "FLAME", "min": 0, "max": 4095, "color": "#008CFF"},
+    {"type": "ValueDisplay", "pin": "V2", "label": "UPTIME", "suffix": "s"},
+    {"type": "Notification", "event": "fire_alert"}
+  ],
+  "firmware": {
+    "pins": {"DO": 27, "AO": 34, "RED": 26, "GREEN": 25, "BUZZER": 33, "BUILTIN": 2},
+    "authTokenHint": "include/secrets.h — BLYNK_AUTH_TOKEN"
+  }
+}
