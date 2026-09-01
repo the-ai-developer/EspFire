@@ -26,13 +26,25 @@ void BlynkClient::begin() {
 }
 
 void BlynkClient::connect() {
-    if (String(WIFI_SSID) == "WIFI_SSID_PLACEHOLDER") return;
-    if (WiFi.status() != WL_CONNECTED) {
-        WiFi.begin(WIFI_SSID, WIFI_PASS);
+    if (String(WIFI_SSID) == "WIFI_SSID_PLACEHOLDER") {
+        Serial.println("[WiFi] secrets.h not set — skipping WiFi");
+        return;
     }
+    Serial.printf("[WiFi] Connecting to %s ...\n", WIFI_SSID);
+    WiFi.begin(WIFI_SSID, WIFI_PASS);
+    unsigned long start = millis();
+    while (WiFi.status() != WL_CONNECTED && millis() - start < 8000) {
+        delay(250);
+        Serial.print(".");
+    }
+    Serial.println();
     if (WiFi.status() == WL_CONNECTED) {
+        Serial.printf("[WiFi] Connected IP %s RSSI %d\n", WiFi.localIP().toString().c_str(), WiFi.RSSI());
         Blynk.config(BLYNK_AUTH_TOKEN);
         Blynk.connect(3000);
+        Serial.printf("[Blynk] %s\n", Blynk.connected() ? "connected" : "connect failed");
+    } else {
+        Serial.printf("[WiFi] Failed status %d — check SSID/pass or hotspot on\n", WiFi.status());
     }
 }
 

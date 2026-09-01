@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include <WiFi.h>
 #include "config.h"
 #include "sensors/flame_sensor.h"
 #include "indicators/led_buzzer.h"
@@ -30,6 +31,7 @@ void setup() {
 void loop() {
     sensor.update();
     fireState.update(sensor.isFire());
+    indicators.setWifiConnected(cloud.isConnected() || WiFi.status() == WL_CONNECTED);
     indicators.update(fireState.state());
     cloud.update(fireState.state(), sensor.analogValue());
 
