@@ -1,0 +1,26 @@
+#pragma once
+
+#define PIN_FLAME_DO 27
+#define PIN_FLAME_AO 34
+#define PIN_RED_LED 26
+#define PIN_GREEN_LED 25
+#define PIN_BUZZER 33
+
+#define FLAME_ACTIVE_LOW true
+
+#define FIRE_DEBOUNCE_MS 200
+#define FIRE_CLEAR_MS 1000
+#define BLYNK_NOTIFY_COOLDOWN_MS 30000
+
+#define LED_BLINK_MS 200
+#define BUZZER_PULSE_MS 300
+
+#define BLYNK_VPIN_FIRE 0
+#define BLYNK_VPIN_ANALOG 1
+#define BLYNK_VPIN_UPTIME 2
+
+#define SERIAL_BAUD 115200
+
+#define PIN_MQ2_DO 32
+#define PIN_MQ2_AO 35
+#define PIN_DHT 14

@@ -1,0 +1,10 @@
+.pio/
+.pioenvs/
+.piolibdeps/
+.pio/build/
+.vscode/
+include/secrets.h
+*.bin
+*.elf
+.superpowers/
+.DS_Store
