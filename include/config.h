@@ -24,3 +24,20 @@
 #define PIN_MQ2_DO 32
 #define PIN_MQ2_AO 35
 #define PIN_DHT 14
+
+#define PIN_LCD_SDA 21
+#define PIN_LCD_SCL 22
+#define LCD_I2C_ADDR 0x27
+#define LCD_COLS 16
+#define LCD_ROWS 2
+
+#define BLYNK_VPIN_TEMP 3
+#define BLYNK_VPIN_HUM 4
+#define BLYNK_VPIN_AQ 5
+
+#define TEMP_ALERT_C 40.0f
+#define HUM_ALERT_PCT 80.0f
+#define AQ_ALERT_RAW 1800
+#define DHT_READ_MS 2000
+#define LCD_REFRESH_MS 1000
+#define MQ_PREHEAT_MS 120000
