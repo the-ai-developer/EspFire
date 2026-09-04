@@ -5,7 +5,10 @@
   "datastreams": [
     {"pin": "V0", "name": "Fire Status", "type": "INTEGER", "min": 0, "max": 1, "isPro": false},
     {"pin": "V1", "name": "Flame Analog", "type": "INTEGER", "min": 0, "max": 4095, "isPro": false},
-    {"pin": "V2", "name": "Uptime sec", "type": "INTEGER", "min": 0, "max": 999999, "isPro": false}
+    {"pin": "V2", "name": "Uptime sec", "type": "INTEGER", "min": 0, "max": 999999, "isPro": false},
+    {"pin": "V3", "name": "Temperature", "type": "DOUBLE", "min": -40, "max": 80, "unit": "Celsius", "isPro": false},
+    {"pin": "V4", "name": "Humidity", "type": "DOUBLE", "min": 0, "max": 100, "unit": "Percent", "isPro": false},
+    {"pin": "V5", "name": "Air Quality", "type": "INTEGER", "min": 0, "max": 4095, "isPro": false}
   ],
   "events": [
     {"code": "fire_alert", "name": "Fire Alert", "type": "CRITICAL", "notify": true, "timeline": true, "description": "Fire detected! Check immediately."},
@@ -15,6 +18,9 @@
     {"type": "LED", "pin": "V0", "label": "FIRE", "color": "#FF0000", "offLabel": "SAFE"},
     {"type": "Gauge", "pin": "V1", "label": "FLAME", "min": 0, "max": 4095, "color": "#008CFF"},
     {"type": "ValueDisplay", "pin": "V2", "label": "UPTIME", "suffix": "s"},
+    {"type": "Gauge", "pin": "V3", "label": "TEMP", "min": -40, "max": 80, "color": "#FF9800"},
+    {"type": "Gauge", "pin": "V4", "label": "HUMIDITY", "min": 0, "max": 100, "color": "#00BCD4"},
+    {"type": "Gauge", "pin": "V5", "label": "AIR", "min": 0, "max": 4095, "color": "#9C27B0"},
     {"type": "Notification", "event": "fire_alert"}
   ],
   "firmware": {

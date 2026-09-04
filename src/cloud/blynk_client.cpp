@@ -93,3 +93,17 @@ void BlynkClient::update(SystemState state, int analogVal) {
         Blynk.connect(2000);
     }
 }
+
+void BlynkClient::updateEnv(SystemState state, int aqRaw, float tempC, float humPct) {
+    update(state, aqRaw);
+
+    unsigned long now = millis();
+    if (now - lastEnvSend_ < 2000) return;
+    lastEnvSend_ = now;
+
+    if (Blynk.connected() && !isnan(tempC) && !isnan(humPct)) {
+        Blynk.virtualWrite(BLYNK_VPIN_TEMP, tempC);
+        Blynk.virtualWrite(BLYNK_VPIN_HUM, humPct);
+        Blynk.virtualWrite(BLYNK_VPIN_AQ, aqRaw);
+    }
+}

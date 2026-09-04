@@ -45,7 +45,7 @@ void loop() {
     indicators.setWifiConnected(cloud.isConnected() || WiFi.status() == WL_CONNECTED);
     indicators.update(env.abnormal() ? SystemState::Fire : SystemState::Safe);
     lcd.update(r, air.raw(), env.abnormal(), WiFi.status() == WL_CONNECTED);
-    cloud.update(env.abnormal() ? SystemState::Fire : SystemState::Safe, air.raw());
+    cloud.updateEnv(env.abnormal() ? SystemState::Fire : SystemState::Safe, air.raw(), r.tempC, r.humPct);
 
     if (env.changed()) {
         Serial.printf("[%lu] STATE -> %s (%s) | T:%.1f H:%.1f AQ:%d blynk:%s\n",
